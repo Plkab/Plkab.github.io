@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 layout: page
 title: Ressources pédagogiques
@@ -17,4 +18,3 @@ title: Ressources pédagogiques
 ## Outils et logiciels
 - [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)
 - [STM32CubeMX](https://www.st.com/en/development-tools/stm32cubemx.html)
-- [PlatformIO](https://platformio.org/)

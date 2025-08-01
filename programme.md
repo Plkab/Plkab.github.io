@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 layout: page
 title: Programme du cours
@@ -22,4 +23,3 @@ title: Programme du cours
 | 8 | Interfaces graphiques | 23/01 - 30/01 | 10h |
 | 9 | Sécurité embarquée | 06/02 - 13/02 | 8h |
 | 10 | Protocoles industriels | 20/02 - 27/02 | 10h |
-| 11 | Projet intégré | 06/03 - 24/04 | 40h |

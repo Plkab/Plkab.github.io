@@ -1,0 +1,23 @@
+<footer>
+  <div class="footer-content">
+    <div class="contact">
+      <h3>Contact</h3>
+      <p>Email: <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+      <p>Département d'Ingénierie des Systèmes Embarqués</p>
+    </div>
+    
+    <div class="resources">
+      <h3>Ressources</h3>
+      <ul>
+        <li><a href="https://www.st.com">STMicroelectronics</a></li>
+        <li><a href="https://www.keil.com">Keil MDK</a></li>
+        <li><a href="https://www.freertos.org">FreeRTOS</a></li>
+      </ul>
+    </div>
+    
+    <div class="license">
+      <p>© {{ site.time | date: '%Y' }} {{ site.title }}</p>
+      <p>Contenu sous licence CC BY-NC-SA 4.0</p>
+    </div>
+  </div>
+</footer>

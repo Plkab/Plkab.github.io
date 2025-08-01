@@ -35,25 +35,6 @@ navigation:
     url: /projets
   - title: Cours 1
     url: /cours1
-
-# Informations complémentaires
-hardware:
-  - nom: "STM32F401RE"
-    coeur: "ARM Cortex-M4"
-    frequence: "84 MHz"
-    flash: "512 KB"
-    ram: "96 KB"
-  - nom: "STM32F407VG"
-    coeur: "ARM Cortex-M4"
-    frequence: "168 MHz"
-    flash: "1 MB"
-    ram: "192 KB"
-
-outils:
-  - "STM32CubeIDE"
-  - "STM32CubeMX"
-  - "OpenOCD"
-  - "PlatformIO"
   
 professeurs:
   - nom: "Ir. Paul S. Kabidu"
