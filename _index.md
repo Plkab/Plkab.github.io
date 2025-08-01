@@ -1,18 +1,7 @@
 ---
-layout: default
-title: Accueil
+layout: home
 ---
 
-# Bienvenue au cours d'Ingénierie
+# Bienvenue sur mon site !
 
-Ce site accompagne le cours d'ingénierie et fournit toutes les ressources nécessaires.
-
-## Cours disponibles
-{% for cours in site.cours1 %}
-- [{{ cours.title }}]({{ cours.url }})
-{% endfor %}
-
-## Projets à réaliser
-{% for projet in site.projets %}
-- [{{ projet.title }}]({{ projet.url }})
-{% endfor %}
+Ceci est ma page d'accueil générée avec Jekyll.

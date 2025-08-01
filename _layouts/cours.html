@@ -1,0 +1,39 @@
+
+## Layouts personnalisés
+
+### `_layouts/cours.html`
+```html
+---
+layout: default
+---
+<article class="cours">
+  <header>
+    <h1>{{ page.title }}</h1>
+    <div class="meta">
+      <span>Module {{ page.module }}</span> • 
+      <span>{{ page.date | date: "%d/%m/%Y" }}</span>
+    </div>
+  </header>
+
+  <div class="objectifs">
+    <h2>Objectifs d'apprentissage</h2>
+    <ul>
+      {% for objectif in page.objectifs %}
+      <li>{{ objectif }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="content">
+    {{ content }}
+  </div>
+
+  <div class="ressources">
+    <h2>Ressources complémentaires</h2>
+    <ul>
+      <li><a href="#">Documentation technique</a></li>
+      <li><a href="#">Exemples de code</a></li>
+      <li><a href="#">Vidéos explicatives</a></li>
+    </ul>
+  </div>
+</article>
