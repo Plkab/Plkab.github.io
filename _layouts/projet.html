@@ -1,0 +1,31 @@
+---
+layout: default
+---
+<article class="projet">
+  <header>
+    <h1>{{ page.title }}</h1>
+    <p>Durée: {{ page.duree }}</p>
+  </header>
+
+  <div class="objectifs">
+    <h2>Objectifs du projet</h2>
+    <ul>
+      {% for objectif in page.objectifs %}
+      <li>{{ objectif }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="content">
+    {{ content }}
+  </div>
+
+  <div class="deliverables">
+    <h2>Livrables attendus</h2>
+    <ul>
+      <li>Code source commenté</li>
+      <li>Rapport technique</li>
+      <li>Démonstration pratique</li>
+    </ul>
+  </div>
+</article>

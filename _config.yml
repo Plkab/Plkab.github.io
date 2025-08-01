@@ -1,15 +1,47 @@
-title: "Mon Site Personnel"
-email: "votre@email.com"
-description: "Site généré avec Jekyll"
+# _config.yml
+title: Conception des systèmes a base du microcontroleur STM32F
+email: spaulkab@gmail.com
+description: >-
+  Site d'accompagnement du cours d'ingénierie - Ressources, supports de cours et projets
 baseurl: ""
 url: "https://plkab.github.io"
-twitter_username: jekyllrb
-github_username:  Plkab
+timezone: Europe/Paris
 
-# Paramètres importants
+# Collections personnalisées
+collections:
+  projets:
+    output: true
+    permalink: /projets/:path/
+  enseignements:
+    output: true
+    permalink: /enseignements/:path/
+  cours1:
+    output: true
+    permalink: /cours1/:path/
+  
+
+# Paramètres du site
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 
-# Options de build
-markdown: kramdown
+# Personnalisation
+navigation:
+  - title: Accueil
+    url: /
+  - title: Programme
+    url: /programme
+  - title: Cours 1
+    url: /cours1
+  - title: Projets
+    url: /projets
+  - title: Enseignements
+    url: /enseignements
+  - title: Ressources
+    url: /ressources
+
+professeurs:
+  - nom: "Ir. Paul S. Kabidu"
+    role: "Enseignent en genie electrique"
+    email: "spaulkab@gmail.com"
