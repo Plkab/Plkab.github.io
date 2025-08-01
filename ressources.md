@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ---
 layout: page
 title: Ressources pédagogiques

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ---
 layout: page
 title: Programme du cours
