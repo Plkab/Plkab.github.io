@@ -1,0 +1,15 @@
+title: "Mon Site Personnel"
+email: "votre@email.com"
+description: "Site généré avec Jekyll"
+baseurl: ""
+url: "https://plkab.github.io"
+twitter_username: jekyllrb
+github_username:  Plkab
+
+# Paramètres importants
+theme: minima
+plugins:
+  - jekyll-feed
+
+# Options de build
+markdown: kramdown
