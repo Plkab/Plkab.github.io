@@ -4,8 +4,357 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ingénierie des Systèmes Embarqués - Dr. Jean Martin</title>
-    <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #1a2a6c;
+            --secondary: #b21f1f;
+            --accent: #fdbb2d;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --gray: #6c757d;
+            --success: #28a745;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.97);
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* En-tête */
+        header {
+            background: linear-gradient(to right, var(--dark), #4a6491);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .course-title {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .github-badge {
+            background: rgba(0, 0, 0, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(5px);
+        }
+        
+        .github-badge i {
+            color: var(--accent);
+        }
+        
+        .teacher-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .info-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 18px 28px;
+            border-radius: 12px;
+            min-width: 240px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            transition: transform 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .info-card strong {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        /* Navigation */
+        nav {
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--dark);
+            background: #f8f9fa;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #e9ecef;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-links li a:hover, 
+        .nav-links li a.active {
+            background: linear-gradient(to right, #3498db, var(--dark));
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-color: #3498db;
+        }
+        
+        /* Sections de contenu */
+        .section {
+            padding: 50px 40px;
+            border-bottom: 1px solid #eee;
+            position: relative;
+        }
+        
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 0;
+        }
+        
+        #description::before { background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%231a2a6c"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>'); }
+        #projets::before { background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23b21f1f"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>'); }
+        #expositions::before { background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23fdbb2d"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z"/></svg>'); }
+        #microcontroleur::before { background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2328a745"><path d="M4 6c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 16c-.56-.45-1-1.27-1-2 0-1.66 1.34-3 3-3s3 1.34 3 3c0 .73-.44 1.55-1 2h-4zm3-16c0-1.66-1.34-3-3-3S10 4.34 10 6s1.34 3 3 3 3-1.34 3-3zM7.76 16c.5.98 1.51 1.73 2.66 1.96l-1.53 7.66c-.08.42.07.85.38 1.15.31.3.74.42 1.15.34l4.17-1.04c.42-.1.8-.34 1.09-.67l.01-.01 4.24-5.03c.4-.48.62-1.08.62-1.69v-2.28c.61-.41 1-1.09 1-1.86 0-1.31-.94-2.5-2.3-2.74C18.4 8.5 17 9.84 17 11.5c0 .77.39 1.45 1 1.86v2.28L15 18.33l-1.45-1.81L7.76 16z"/></svg>'); }
+        #articles::before { background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%233498db"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>'); }
+        #contacts::before { background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236f42c1"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>'); }
+        
+        .section:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section h2 {
+            color: var(--dark);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-content {
+            margin-bottom: 30px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-content p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+        
+        .subsection {
+            margin-top: 25px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .subsection h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .subsection ul {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .subsection li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .subsection li::before {
+            content: "•";
+            color: var(--accent);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+        
+        .content-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .content-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 25px;
+            background: #e3f2fd;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #1976d2;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #bbdefb;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content-link:hover {
+            background: #bbdefb;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .course-title {
+                font-size: 2.3rem;
+            }
+            
+            .teacher-info {
+                gap: 20px;
+            }
+            
+            .info-card {
+                min-width: 200px;
+                padding: 15px 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .course-title {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .teacher-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links li a {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .section {
+                padding: 40px 20px;
+            }
+            
+            .content-links {
+                flex-direction: column;
+            }
+            
+            .content-link {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .course-title {
+                font-size: 1.8rem;
+            }
+            
+            .section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .info-card {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -49,9 +398,9 @@
                 <p>Notre philosophie pédagogique repose sur l'apprentissage par la pratique, où chaque concept théorique est immédiatement appliqué à travers des projets concrets. Nous encourageons la créativité et l'innovation tout en maintenant une rigueur technique indispensable dans le domaine de l'ingénierie.</p>
             </div>
             <div class="content-links">
-                <a href="description_detail.html" class="content-link"><i class="fas fa-info-circle"></i> Détails du programme</a>
-                <a href="philosophie_pedagogique.html" class="content-link"><i class="fas fa-graduation-cap"></i> Approche pédagogique</a>
-                <a href="ressources.html" class="content-link"><i class="fas fa-book"></i> Ressources complémentaires</a>
+                <a href="#" class="content-link"><i class="fas fa-info-circle"></i> Détails du programme</a>
+                <a href="#" class="content-link"><i class="fas fa-graduation-cap"></i> Approche pédagogique</a>
+                <a href="#" class="content-link"><i class="fas fa-book"></i> Ressources complémentaires</a>
             </div>
         </section>
         
@@ -63,19 +412,21 @@
                 <div class="subsection">
                     <h3><i class="fas fa-vibration"></i> Visualisation des vibrations avec FFT</h3>
                     <p>Conception d'un système embarqué pour capturer et analyser des signaux vibratoires à l'aide de la transformation de Fourier rapide.</p>
-                    <a href="/projets/fft-vibration.html" class="content-link"><i class="fas fa-external-link-alt"></i> Voir les détails</a>
+                    <a href="#" class="content-link"><i class="fas fa-external-link-alt"></i> Voir les détails</a>
                 </div>
                 
                 <div class="subsection">
                     <h3><i class="fas fa-compass"></i> Construire un gimbal</h3>
                     <p>Développement d'un système de stabilisation à 3 axes pour caméra, utilisant des gyroscopes et des algorithmes de contrôle PID.</p>
-                    <a href="/projets/gimbal.html" class="content-link"><i class="fas fa-external-link-alt"></i> Voir les détails</a>
+                    <a href="#" class="content-link"><i class="fas fa-external-link-alt"></i> Voir les détails</a>
                 </div>
+                
+                <p>Ces projets permettent d'appliquer les connaissances théoriques à des problèmes réels tout en développant des compétences pratiques en conception électronique et programmation embarquée.</p>
             </div>
             <div class="content-links">
-                <a href="liste_projets.html" class="content-link"><i class="fas fa-list"></i> Liste complète des projets</a>
-                <a href="exemples_projets.html" class="content-link"><i class="fas fa-laptop-code"></i> Exemples de projets</a>
-                <a href="guide_projets.html" class="content-link"><i class="fas fa-book-open"></i> Guide de réalisation</a>
+                <a href="#" class="content-link"><i class="fas fa-list"></i> Liste complète des projets</a>
+                <a href="#" class="content-link"><i class="fas fa-laptop-code"></i> Exemples de projets</a>
+                <a href="#" class="content-link"><i class="fas fa-book-open"></i> Guide de réalisation</a>
             </div>
         </section>
         
@@ -87,25 +438,25 @@
                 <div class="subsection">
                     <h3><i class="fas fa-wave-square"></i> FFT</h3>
                     <p>Exposition sur les applications pratiques de la transformation de Fourier dans les systèmes embarqués.</p>
-                    <a href="/expo/fft.html" class="content-link"><i class="fas fa-external-link-alt"></i> Visiter l'exposition</a>
+                    <a href="#" class="content-link"><i class="fas fa-external-link-alt"></i> Visiter l'exposition</a>
                 </div>
                 
                 <div class="subsection">
                     <h3><i class="fas fa-sliders-h"></i> PID</h3>
                     <p>Présentation des contrôleurs PID et leur implémentation dans divers projets étudiants.</p>
-                    <a href="/expo/pid.html" class="content-link"><i class="fas fa-external-link-alt"></i> Visiter l'exposition</a>
+                    <a href="#" class="content-link"><i class="fas fa-external-link-alt"></i> Visiter l'exposition</a>
                 </div>
                 
                 <div class="subsection">
                     <h3><i class="fas fa-signal"></i> DDS</h3>
                     <p>Démonstrations de systèmes de synthèse directe numérique pour la génération de signaux.</p>
-                    <a href="/expo/dds.html" class="content-link"><i class="fas fa-external-link-alt"></i> Visiter l'exposition</a>
+                    <a href="#" class="content-link"><i class="fas fa-external-link-alt"></i> Visiter l'exposition</a>
                 </div>
             </div>
             <div class="content-links">
-                <a href="exposition_2024.html" class="content-link"><i class="fas fa-calendar"></i> Exposition 2024</a>
-                <a href="exposition_2023.html" class="content-link"><i class="fas fa-history"></i> Exposition 2023</a>
-                <a href="gallerie_photos.html" class="content-link"><i class="fas fa-images"></i> Gallerie photos</a>
+                <a href="#" class="content-link"><i class="fas fa-calendar"></i> Exposition 2024</a>
+                <a href="#" class="content-link"><i class="fas fa-history"></i> Exposition 2023</a>
+                <a href="#" class="content-link"><i class="fas fa-images"></i> Gallerie photos</a>
             </div>
         </section>
         
@@ -117,31 +468,31 @@
                 <div class="subsection">
                     <h3><i class="fas fa-plug"></i> GPIO</h3>
                     <p>Configuration et utilisation des entrées/sorties à usage général pour l'interfaçage avec des périphériques externes.</p>
-                    <a href="/stm32/gpio.html" class="content-link"><i class="fas fa-external-link-alt"></i> Voir le tutoriel</a>
+                    <a href="#" class="content-link"><i class="fas fa-external-link-alt"></i> Voir le tutoriel</a>
                 </div>
                 
                 <div class="subsection">
                     <h3><i class="fas fa-wave-square"></i> PWM</h3>
                     <p>Génération de signaux PWM pour le contrôle de moteurs, leds et autres dispositifs analogiques.</p>
-                    <a href="/stm32/pwm.html" class="content-link"><i class="fas fa-external-link-alt"></i> Voir le tutoriel</a>
+                    <a href="#" class="content-link"><i class="fas fa-external-link-alt"></i> Voir le tutoriel</a>
                 </div>
                 
                 <div class="subsection">
                     <h3><i class="fas fa-clock"></i> Timer</h3>
                     <p>Utilisation des timers pour la génération de signaux, la capture d'événements et la mesure de temps.</p>
-                    <a href="/stm32/timer.html" class="content-link"><i class="fas fa-external-link-alt"></i> Voir le tutoriel</a>
+                    <a href="#" class="content-link"><i class="fas fa-external-link-alt"></i> Voir le tutoriel</a>
                 </div>
                 
                 <div class="subsection">
                     <h3><i class="fas fa-exchange-alt"></i> I2C</h3>
                     <p>Communication avec des capteurs et périphériques via le bus I2C.</p>
-                    <a href="/stm32/i2c.html" class="content-link"><i class="fas fa-external-link-alt"></i> Voir le tutoriel</a>
+                    <a href="#" class="content-link"><i class="fas fa-external-link-alt"></i> Voir le tutoriel</a>
                 </div>
             </div>
             <div class="content-links">
-                <a href="stm32_guide.html" class="content-link"><i class="fas fa-book"></i> Guide de démarrage</a>
-                <a href="bibliotheque_stm32.html" class="content-link"><i class="fas fa-code"></i> Bibliothèques et exemples</a>
-                <a href="projets_stm32.html" class="content-link"><i class="fas fa-microchip"></i> Projets spécifiques</a>
+                <a href="#" class="content-link"><i class="fas fa-book"></i> Guide de démarrage</a>
+                <a href="#" class="content-link"><i class="fas fa-code"></i> Bibliothèques et exemples</a>
+                <a href="#" class="content-link"><i class="fas fa-microchip"></i> Projets spécifiques</a>
             </div>
         </section>
         
@@ -152,17 +503,19 @@
                 
                 <div class="subsection">
                     <ul>
-                        <li><a href="/articles/kalman.html">"Filtre de Kalman pour systèmes embarqués" - IEEE Transactions</a></li>
-                        <li><a href="/articles/pid.html">"Optimisation des contrôleurs PID" - ACM Journal</a></li>
+                        <li>"Filtre de Kalman pour systèmes embarqués" - IEEE Transactions</li>
+                        <li>"Optimisation des contrôleurs PID" - ACM Journal</li>
                         <li>"Optimisation énergétique dans les systèmes IoT" - IEEE Transactions</li>
                         <li>"Nouvelles approches de sécurité pour systèmes embarqués critiques" - ACM Journal</li>
                     </ul>
                 </div>
+                
+                <p>Ces ressources sont essentielles pour les étudiants souhaitant poursuivre des recherches ou approfondir des sujets spécifiques.</p>
             </div>
             <div class="content-links">
-                <a href="articles_recent.html" class="content-link"><i class="fas fa-newspaper"></i> Articles récents</a>
-                <a href="recherche_departement.html" class="content-link"><i class="fas fa-flask"></i> Recherches de notre département</a>
-                <a href="bibliographie.html" class="content-link"><i class="fas fa-book"></i> Bibliographie complète</a>
+                <a href="#" class="content-link"><i class="fas fa-newspaper"></i> Articles récents</a>
+                <a href="#" class="content-link"><i class="fas fa-flask"></i> Recherches de notre département</a>
+                <a href="#" class="content-link"><i class="fas fa-book"></i> Bibliographie complète</a>
             </div>
         </section>
         
@@ -179,15 +532,78 @@
                         <li><strong>Assistants pédagogiques</strong>: assist.embarque@universite.fr</li>
                     </ul>
                 </div>
+                
+                <p>Vous pouvez également nous rejoindre sur les plateformes suivantes :</p>
             </div>
             <div class="content-links">
-                <a href="forum.html" class="content-link"><i class="fas fa-comments"></i> Forum du cours</a>
-                <a href="https://github.com/Plkab" class="content-link"><i class="fab fa-github"></i> Dépôt GitHub</a>
-                <a href="teams.html" class="content-link"><i class="fas fa-users"></i> Équipe Microsoft Teams</a>
+                <a href="#" class="content-link"><i class="fas fa-comments"></i> Forum du cours</a>
+                <a href="#" class="content-link"><i class="fab fa-github"></i> Dépôt GitHub</a>
+                <a href="#" class="content-link"><i class="fas fa-users"></i> Équipe Microsoft Teams</a>
             </div>
         </section>
     </div>
 
-    <script src="/assets/js/scripts.js"></script>
+    <script>
+        // Navigation active
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            // Set first link as active initially
+            if (navLinks.length > 0) {
+                navLinks[0].classList.add('active');
+            }
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Prevent default only for smooth scrolling
+                    if(link.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        
+                        // Remove active class from all links
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        
+                        // Add active class to clicked link
+                        this.classList.add('active');
+                        
+                        // Get target element
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        
+                        // Scroll to target
+                        if(targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+            
+            // Highlight active section on scroll
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('.section');
+                const navHeight = document.querySelector('nav').offsetHeight;
+                
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (pageYOffset >= (sectionTop - navHeight - 100)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
