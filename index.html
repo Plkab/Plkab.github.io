@@ -4,121 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conception des Systèmes Embarqués à base du microcontrôleur STM32F4</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-        
-        body {
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f8f8;
-            padding: 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        header {
-            text-align: center;
-            padding: 20px 0;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        h1 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            color: #0066cc;
-        }
-        
-        .info {
-            margin: 15px 0;
-            color: #666;
-        }
-        
-        nav {
-            margin: 20px 0;
-            padding: 15px 0;
-            text-align: center;
-            border-top: 1px solid #ddd;
-            border-bottom: 1px solid #ddd;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        nav a {
-            padding: 8px 15px;
-            text-decoration: none;
-            color: #0066cc;
-            margin: 0 5px;
-            white-space: nowrap;
-        }
-        
-        section {
-            margin: 30px 0;
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-        }
-        
-        h2 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #0066cc;
-        }
-        
-        p {
-            margin-bottom: 15px;
-            line-height: 1.7;
-        }
-        
-        ul {
-            padding-left: 25px;
-            margin: 15px 0;
-        }
-        
-        li {
-            margin-bottom: 8px;
-        }
-        
-        .contact-info {
-            margin: 20px 0;
-        }
-        
-        .contact-item {
-            margin: 15px 0;
-        }
-        
-        .contact-label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
-        
-        .contact-value {
-            margin-left: 10px;
-        }
-        
-        @media (max-width: 600px) {
-            nav {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            nav a {
-                display: block;
-                width: 100%;
-                text-align: center;
-                margin: 5px 0;
-                padding: 10px;
-                border: 1px solid #ddd;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
     <header>
@@ -140,132 +26,27 @@
         <a href="#contacts">Contacts</a>
     </nav>
     
-    <section id="approche">
-        <h2>Notre approche et philosophie</h2>
-        <p>Ce cours explore les principes fondamentaux des systèmes embarqués, en mettant l'accent sur la conception matérielle et logicielle des dispositifs électroniques intelligents.</p>
-        <p>Notre philosophie pédagogique repose sur l'apprentissage par la pratique à travers des projets concrets qui permettent d'appliquer immédiatement les concepts théoriques.</p>
-    </section>
-    
-    <section id="projets">
-        <h2>Projets d'ingénierie</h2>
-        <p>Les projets constituent le cœur de ce cours. Voici nos principaux projets :</p>
-        
-        <ul>
-            <li><a href="projets/chronometre1.html">1. Chronometre numerique avec 7 segments</a></li>
-            <li><a href="projets/chronometre2.html">2. Horloge et Chronometre numerique avec LCD</a></li>
-            <li><a href="projets/serrure.html">3. Serrure codee</a></li>
-            <li><a href="projets/sequencageLED.html">4. Sequencage automatique des LEDs</a></li>
-            <li><a href="projets/frequecemetre.html">5. Ohmmetre, Voltmetre et Frequencemetre numerique</a></li>
-            <li><a href="projets/databiometrique.html">6. Acquisitionnaire digital des donnees biometriques ECG avec filtre Biquad et GUI monitoring</a></li>
-            <li><a href="projets/monitoring1.html">7. Monitoring data</a></li>
-            <li><a href="projets/generateur1.html">8. Generateur numerique des signaux</a></li>
-            <li><a href="projets/sytheseDDS.html">9.  Génération d’un son d’oiseau par la DDS</a></li>
-            <li><a href="projets/sytheseFM1.html">10.  Synthèse sonore par Modulation de Fréquence (FM)</a></li>
-            <li><a href="projets/sytheseFM2.html">11.  Jouer une mélodie de la flute par Modulation de Fréquence (FM)</a></li>
-            <li><a href="projets/sytheseFMKarplus.html">12.  Synthèse sonore de la guitare acoustique Karplus-Strong</a></li>
-            <li><a href="projets/sytheseFMKarplusMarkov.html">13.  Synthèse sonore de piano par Karplus-Strong et la suite de Markov</a></li>
-            <li><a href="projets/localisationgps.html">14.  Geolocalisation des objects en temps reel</a></li>
-            <li><a href="projets/datalogger.html">15.  L’enregistrement de données (data logger) des capteurs sur carte SD avec FATFS</a></li>
-            <li><a href="projets/gimbal.html">16.  Plateforme autostabilisee 2D</a></li>
-            <li><a href="projets/onduleur.html">17.  Onduleur</a></li>
-            <li><a href="projets/gradateur.html">18.  Gradateur</a></li>
-            <li><a href="projets/pidmoteurdc.html">19.  Controle vitesse moteur DC avec feedback</a></li>
-            <li><a href="projets/fftvibration.html">20. Visualisation et analyseur de spectre des vibrations avec FFT</a></li>
-            <li><a href="projets/wifisurveillance.html">21. Système de surveillance environnemental via wifi ESP8266</a></li>
-            <li><a href="projets/ethernetsurveillance.html">22. Système de surveillance environnemental locale via Ethenet ENC28..</a></li>
-            <li><a href="projets/cansurveillance.html">23. Transmission data via CAN</a></li>
-            <li><a href="projets/pilotevga.html">24. Pilote VGA et graphisme</a></li>
-            <li><a href="projets/pidpendule.html">25. Controle d'un pendule inverse a 2 roues</a></li>
-            <li><a href="projets/decisionanimal.html">26. Prise de décision dans les groupes d'animaux en mouvement</a></li>
-            <li><a href="projets/fftvga.html">27. Affichage audio FFT vers VGA en temps réel</a></li>
-
-        </ul>
-    </section>
-    
-    <section id="ressources">
-        <h2>Autres ressources théoriques</h2>
-        <p>Diverses ressources pédagogiques pour approfondir vos connaissances :</p>
-        
-        <ul>
-            <li><a href="ressources/debounce.html">1. Gestion des rebonds (Debounce) lors de la lecture des entrées via commutateurs mécaniques</a></li>
-            <li><a href="ressources/affichage.html">2. Affichage et multiplexage temporel</a></li>
-            <li><a href="ressources/keypad.html">3. Clavier matricielle</a></li>
-            <li><a href="ressources/interruption.html">4. Polling vs Interruptions</a></li>
-            <li><a href="ressources/capteur.html">5. Capteurs</a></li>
-            <li><a href="ressources/portseriegui.html">6. GUI Python et Port série</a></li>
-            <li><a href="ressources/dds.html">7. Synthèse des sons</a></li>
-            <li><a href="ressources/sdcard.html">8. Fonctionnement d'une carte SD</a></li>
-            <li><a href="ressources/camera.html">9. Fonctionnement d'une camera</a></li>
-            <li><a href="ressources/filtres.html">10. Filtres numeriques</a></li>
-            <li><a href="ressources/fft.html">11. Transformee Rapide de Fourier</a></li>
-            <li><a href="ressources/pid.html">12. Feedback control</a></li>
-            <li><a href="ressources/moteurs.html">13. Moteurs electriques</a></li>
-            <li><a href="ressources/estimation.html">14. Introduction a l'Estimation</a></li>
-            <li><a href="ressources/fusiondonnee.html">15. Fusion des donnees</a></li>
-            <li><a href="ressources/convertisseurenergie.html">16. convertisseurs d'energie</a></li>
-            <li><a href="ressources/wifi.html">17. Wifi</a></li>
-            <li><a href="ressources/accontrol.html">18. Controle d'une charge AC</a></li>
-            <li><a href="ressources/markov.html">19. Suite de Markov</a></li>
-            <li><a href="ressources/can.html">20. Fonctionnement du protocole CAN</a></li>
-            <li><a href="ressources/ethernet.html">21. Transmission data via Ethenet</a></li>
-            <li><a href="ressources/filtrescomplemetaires.html">22. Filtres Complemetaires</a></li>
-           
-        </ul>
-    </section>
-    
-    <section id="stm32">
-        <h2>Microcontrôleur STM32F4</h2>
-        <p>Ressources complètes pour maîtriser l'usage du microcontrôleur STM32F4 :</p>
-        
-        <ul>
-            <li><a href="stm32/architecture_stm32f4.html">1. Présentation du microcontrôleur STM32F4</a></li>
-            <li><a href="stm32/gpio.html">2. Structure matérielle et registres de contrôle des GPIO</a></li>
-            <li><a href="stm32/timer.html">3. Timer - Gestion du temps</a></li>
-            <li><a href="stm32/pwm.html">4. PWM - Modulation de largeur d'impulsion</a></li>
-            <li><a href="stm32/uart.html">5. Communication avec des dispositifs via UART</a></li>
-            <li><a href="stm32/i2c.html">6. Communication avec I2C (Inter-Integrated Circuit)</a></li>
-            <li><a href="stm32/spi.html">7. Communication en SPI (Serial Peripheral Interface)</a></li>
-            <li><a href="stm32/adc.html">8. Acquisition analogique - ADC (Analog to Digital Converter)</a></li>
-            <li><a href="stm32/dac.html">9. Génération des signaux analogiques - DAC (Digital to Analog Converter)</a></li>
-            <li><a href="stm32/dma.html">10. DMA - Communication</a></li>
-        </ul>
-    </section>
-    
-    <section id="articles">
-        <h2>Articles académiques</h2>
-        <p>Publications scientifiques pour approfondir les sujets abordés :</p>
-        
-        <ul>
-            <li><a href="articles/kalman.html">1. Filtre de Kalman pour systèmes embarqués</a></li>
-        </ul>
-    </section>
-    
-    <section id="contacts">
-        <h2>Contacts</h2>
-        <p>Pour toute question concernant le cours :</p>
-        
-        <div class="contact-info">
-            <div class="contact-item">
-                <span class="contact-label">Ir. Paul S. Kabidu</span>
-                <span class="contact-value">Enseignant principal - spaulkabidu@gmail.com</span>
-            </div>
-                       
-            <div class="contact-item">
-                <span class="contact-label">Dépôt GitHub</span>
-                <span class="contact-value">Code source et ressources partagées</span>
-            </div>
-
-            <div class="contact-item">
-                <span class="contact-label">Formulaire de contact</span>
-                <span class="contact-value">Pour les demandes spécifiques</span>
-            </div>
-            
-        </div>
-    </section>
+    <!-- Sections incluses dynamiquement -->
+    <div id="sections-container">
+        <!-- Le contenu sera chargé ici par JavaScript -->
+    </div>
 
     <script>
-        // Navigation simple
         document.addEventListener('DOMContentLoaded', function() {
+            const sections = [
+                'approche', 'projets', 'ressources', 'stm32', 'articles', 'contacts'
+            ];
+
+            const container = document.getElementById('sections-container');
+            
+            sections.forEach(section => {
+                fetch(`sections/${section}.html`)
+                    .then(response => response.text())
+                    .then(html => {
+                        container.innerHTML += html;
+                    });
+            });
+
             // Gestion du défilement fluide
             document.querySelectorAll('nav a').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
