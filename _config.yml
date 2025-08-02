@@ -1,0 +1,27 @@
+title: Ingénierie des Systèmes Embarqués
+description: Cours de systèmes embarqués - Dr. Jean Martin
+url: "https://plkab.github.io"
+
+author:
+  name: Dr. Jean Martin
+  email: jean.martin@universite.fr
+  department: Génie Électrique et Informatique
+  position: Professeur Associé
+
+github:
+  username: Plkab
+  repo: Plkab.github.io
+
+navigation:
+  - title: Description
+    url: /#description
+  - title: Projets
+    url: /#projets
+  - title: Expositions
+    url: /#expositions
+  - title: Microcontrôleur
+    url: /#microcontroleur
+  - title: Articles
+    url: /#articles
+  - title: Contact
+    url: /#contacts
