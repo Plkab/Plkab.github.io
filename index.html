@@ -4,7 +4,319 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conception des Systèmes Embarqués STM32F4</title>
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a2a6c;
+            --secondary: #b21f1f;
+            --accent: #fdbb2d;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --gray: #6c757d;
+            --success: #28a745;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.97);
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+        }
+
+        /* En-tête */
+        header {
+            background: linear-gradient(to right, var(--dark), #4a6491);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .course-title {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .github-badge {
+            background: rgba(0, 0, 0, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .github-badge:hover {
+            background: rgba(0, 0, 0, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .github-badge i {
+            color: var(--accent);
+        }
+
+        .teacher-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 18px 28px;
+            border-radius: 12px;
+            min-width: 240px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        /* Navigation */
+        nav {
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--dark);
+            background: #f8f9fa;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #e9ecef;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links li a:hover, 
+        .nav-links li a.active {
+            background: linear-gradient(to right, #3498db, var(--dark));
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-color: #3498db;
+        }
+
+        /* Sections de contenu */
+        .section {
+            padding: 50px 40px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section h2 {
+            color: var(--dark);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+        }
+
+        .section-content {
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .section-content p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .subsection {
+            margin-top: 25px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .subsection h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subsection ul {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .subsection li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .subsection li::before {
+            content: "•";
+            color: var(--accent);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        .content-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .content-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 25px;
+            background: #e3f2fd;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #1976d2;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #bbdefb;
+            width: 100%;
+        }
+
+        .content-link:hover {
+            background: #bbdefb;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Numérotation automatique */
+        .item-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* Contacts */
+        .contact-info {
+            margin: 20px 0;
+        }
+
+        .contact-item {
+            margin: 15px 0;
+        }
+
+        .contact-label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .contact-value {
+            margin-left: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .course-title {
+                font-size: 2rem;
+            }
+            
+            .teacher-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links li a {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .section {
+                padding: 40px 20px;
+            }
+            
+            .content-links {
+                flex-direction: column;
+            }
+            
+            .content-link {
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -26,22 +338,448 @@
         
         <nav>
             <ul class="nav-links">
-                <li><a href="#approche" class="active">Notre approche</a></li>
-                <li><a href="#projets">Projets</a></li>
-                <li><a href="#ressources">Ressources</a></li>
-                <li><a href="#stm32">STM32F4</a></li>
-                <li><a href="#articles">Articles</a></li>
-                <li><a href="#contacts">Contact</a></li>
+                <li><a href="#approche" class="active"><i class="fas fa-lightbulb"></i> Notre approche</a></li>
+                <li><a href="#projets"><i class="fas fa-project-diagram"></i> Projets</a></li>
+                <li><a href="#ressources"><i class="fas fa-book"></i> Ressources</a></li>
+                <li><a href="#stm32"><i class="fas fa-microchip"></i> STM32F4</a></li>
+                <li><a href="#articles"><i class="fas fa-file-alt"></i> Articles</a></li>
+                <li><a href="#contacts"><i class="fas fa-envelope"></i> Contact</a></li>
             </ul>
         </nav>
         
         <main>
-            <!-- Sections chargées dynamiquement -->
-            <div id="sections-container"></div>
+            <!-- Section Approche -->
+            <section id="approche" class="section">
+                <h2><i class="fas fa-lightbulb"></i> Notre approche et philosophie</h2>
+                <div class="section-content">
+                    <p>Ce cours explore les principes fondamentaux des systèmes embarqués, en mettant l'accent sur la conception matérielle et logicielle des dispositifs électroniques intelligents.</p>
+                    <p>Notre philosophie pédagogique repose sur l'apprentissage par la pratique à travers des projets concrets qui permettent d'appliquer immédiatement les concepts théoriques.</p>
+                </div>
+            </section>
+
+            <!-- Section Projets -->
+            <section id="projets" class="section">
+                <h2><i class="fas fa-project-diagram"></i> Projets d'ingénierie</h2>
+                <div class="section-content">
+                    <p>Les projets constituent le cœur de ce cours. Voici nos principaux projets :</p>
+                    
+                    <div class="content-links">
+                        <a href="projets/chronometre1.html" class="content-link">
+                            <span class="item-number">1</span>
+                            <i class="fas fa-stopwatch"></i>
+                            Chronometre numerique avec 7 segments
+                        </a>
+                        <a href="projets/chronometre2.html" class="content-link">
+                            <span class="item-number">2</span>
+                            <i class="fas fa-clock"></i>
+                            Horloge et Chronometre numerique avec LCD
+                        </a>
+                        <a href="projets/serrure.html" class="content-link">
+                            <span class="item-number">3</span>
+                            <i class="fas fa-lock"></i>
+                            Serrure codee
+                        </a>
+                        <a href="projets/sequencageLED.html" class="content-link">
+                            <span class="item-number">4</span>
+                            <i class="fas fa-lightbulb"></i>
+                            Sequencage automatique des LEDs
+                        </a>
+                        <a href="projets/frequecemetre.html" class="content-link">
+                            <span class="item-number">5</span>
+                            <i class="fas fa-bolt"></i>
+                            Ohmmetre, Voltmetre et Frequencemetre numerique
+                        </a>
+                        <a href="projets/databiometrique.html" class="content-link">
+                            <span class="item-number">6</span>
+                            <i class="fas fa-heartbeat"></i>
+                            Acquisitionnaire digital des donnees biometriques ECG avec filtre Biquad et GUI monitoring
+                        </a>
+                        <a href="projets/monitoring1.html" class="content-link">
+                            <span class="item-number">7</span>
+                            <i class="fas fa-chart-line"></i>
+                            Monitoring data
+                        </a>
+                        <a href="projets/generateur1.html" class="content-link">
+                            <span class="item-number">8</span>
+                            <i class="fas fa-wave-square"></i>
+                            Generateur numerique des signaux
+                        </a>
+                        <a href="projets/sytheseDDS.html" class="content-link">
+                            <span class="item-number">9</span>
+                            <i class="fas fa-dove"></i>
+                            Génération d'un son d'oiseau par la DDS
+                        </a>
+                        <a href="projets/sytheseFM1.html" class="content-link">
+                            <span class="item-number">10</span>
+                            <i class="fas fa-music"></i>
+                            Synthèse sonore par Modulation de Fréquence (FM)
+                        </a>
+                        <a href="projets/sytheseFM2.html" class="content-link">
+                            <span class="item-number">11</span>
+                            <i class="fas fa-music"></i>
+                            Jouer une mélodie de la flute par Modulation de Fréquence (FM)
+                        </a>
+                        <a href="projets/sytheseFMKarplus.html" class="content-link">
+                            <span class="item-number">12</span>
+                            <i class="fas fa-guitar"></i>
+                            Synthèse sonore de la guitare acoustique Karplus-Strong
+                        </a>
+                        <a href="projets/sytheseFMKarplusMarkov.html" class="content-link">
+                            <span class="item-number">13</span>
+                            <i class="fas fa-piano"></i>
+                            Synthèse sonore de piano par Karplus-Strong et la suite de Markov
+                        </a>
+                        <a href="projets/localisationgps.html" class="content-link">
+                            <span class="item-number">14</span>
+                            <i class="fas fa-map-marker-alt"></i>
+                            Geolocalisation des objects en temps reel
+                        </a>
+                        <a href="projets/datalogger.html" class="content-link">
+                            <span class="item-number">15</span>
+                            <i class="fas fa-database"></i>
+                            L'enregistrement de données (data logger) des capteurs sur carte SD avec FATFS
+                        </a>
+                        <a href="projets/gimbal.html" class="content-link">
+                            <span class="item-number">16</span>
+                            <i class="fas fa-camera"></i>
+                            Plateforme autostabilisee 2D
+                        </a>
+                        <a href="projets/onduleur.html" class="content-link">
+                            <span class="item-number">17</span>
+                            <i class="fas fa-bolt"></i>
+                            Onduleur
+                        </a>
+                        <a href="projets/gradateur.html" class="content-link">
+                            <span class="item-number">18</span>
+                            <i class="fas fa-sliders-h"></i>
+                            Gradateur
+                        </a>
+                        <a href="projets/pidmoteurdc.html" class="content-link">
+                            <span class="item-number">19</span>
+                            <i class="fas fa-cogs"></i>
+                            Controle vitesse moteur DC avec feedback
+                        </a>
+                        <a href="projets/fftvibration.html" class="content-link">
+                            <span class="item-number">20</span>
+                            <i class="fas fa-vial"></i>
+                            Visualisation et analyseur de spectre des vibrations avec FFT
+                        </a>
+                        <a href="projets/wifisurveillance.html" class="content-link">
+                            <span class="item-number">21</span>
+                            <i class="fas fa-wifi"></i>
+                            Système de surveillance environnemental via wifi ESP8266
+                        </a>
+                        <a href="projets/ethernetsurveillance.html" class="content-link">
+                            <span class="item-number">22</span>
+                            <i class="fas fa-network-wired"></i>
+                            Système de surveillance environnemental locale via Ethenet ENC28..
+                        </a>
+                        <a href="projets/cansurveillance.html" class="content-link">
+                            <span class="item-number">23</span>
+                            <i class="fas fa-exchange-alt"></i>
+                            Transmission data via CAN
+                        </a>
+                        <a href="projets/pilotevga.html" class="content-link">
+                            <span class="item-number">24</span>
+                            <i class="fas fa-tv"></i>
+                            Pilote VGA et graphisme
+                        </a>
+                        <a href="projets/pidpendule.html" class="content-link">
+                            <span class="item-number">25</span>
+                            <i class="fas fa-balance-scale"></i>
+                            Controle d'un pendule inverse a 2 roues
+                        </a>
+                        <a href="projets/decisionanimal.html" class="content-link">
+                            <span class="item-number">26</span>
+                            <i class="fas fa-crow"></i>
+                            Prise de décision dans les groupes d'animaux en mouvement
+                        </a>
+                        <a href="projets/fftvga.html" class="content-link">
+                            <span class="item-number">27</span>
+                            <i class="fas fa-wave-square"></i>
+                            Affichage audio FFT vers VGA en temps réel
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section Ressources -->
+            <section id="ressources" class="section">
+                <h2><i class="fas fa-book"></i> Autres ressources théoriques</h2>
+                <div class="section-content">
+                    <p>Diverses ressources pédagogiques pour approfondir vos connaissances :</p>
+                    
+                    <div class="content-links">
+                        <a href="ressources/debounce.html" class="content-link">
+                            <span class="item-number">1</span>
+                            <i class="fas fa-toggle-on"></i>
+                            Gestion des rebonds (Debounce) lors de la lecture des entrées via commutateurs mécaniques
+                        </a>
+                        <a href="ressources/affichage.html" class="content-link">
+                            <span class="item-number">2</span>
+                            <i class="fas fa-desktop"></i>
+                            Affichage et multiplexage temporel
+                        </a>
+                        <a href="ressources/keypad.html" class="content-link">
+                            <span class="item-number">3</span>
+                            <i class="fas fa-keyboard"></i>
+                            Clavier matricielle
+                        </a>
+                        <a href="ressources/interruption.html" class="content-link">
+                            <span class="item-number">4</span>
+                            <i class="fas fa-bell"></i>
+                            Polling vs Interruptions
+                        </a>
+                        <a href="ressources/capteur.html" class="content-link">
+                            <span class="item-number">5</span>
+                            <i class="fas fa-thermometer-half"></i>
+                            Capteurs
+                        </a>
+                        <a href="ressources/portseriegui.html" class="content-link">
+                            <span class="item-number">6</span>
+                            <i class="fab fa-python"></i>
+                            GUI Python et Port série
+                        </a>
+                        <a href="ressources/dds.html" class="content-link">
+                            <span class="item-number">7</span>
+                            <i class="fas fa-music"></i>
+                            Synthèse des sons
+                        </a>
+                        <a href="ressources/sdcard.html" class="content-link">
+                            <span class="item-number">8</span>
+                            <i class="fas fa-sd-card"></i>
+                            Fonctionnement d'une carte SD
+                        </a>
+                        <a href="ressources/camera.html" class="content-link">
+                            <span class="item-number">9</span>
+                            <i class="fas fa-camera"></i>
+                            Fonctionnement d'une camera
+                        </a>
+                        <a href="ressources/filtres.html" class="content-link">
+                            <span class="item-number">10</span>
+                            <i class="fas fa-filter"></i>
+                            Filtres numeriques
+                        </a>
+                        <a href="ressources/fft.html" class="content-link">
+                            <span class="item-number">11</span>
+                            <i class="fas fa-chart-bar"></i>
+                            Transformee Rapide de Fourier
+                        </a>
+                        <a href="ressources/pid.html" class="content-link">
+                            <span class="item-number">12</span>
+                            <i class="fas fa-sliders-h"></i>
+                            Feedback control
+                        </a>
+                        <a href="ressources/moteurs.html" class="content-link">
+                            <span class="item-number">13</span>
+                            <i class="fas fa-cog"></i>
+                            Moteurs electriques
+                        </a>
+                        <a href="ressources/estimation.html" class="content-link">
+                            <span class="item-number">14</span>
+                            <i class="fas fa-calculator"></i>
+                            Introduction a l'Estimation
+                        </a>
+                        <a href="ressources/fusiondonnee.html" class="content-link">
+                            <span class="item-number">15</span>
+                            <i class="fas fa-layer-group"></i>
+                            Fusion des donnees
+                        </a>
+                        <a href="ressources/convertisseurenergie.html" class="content-link">
+                            <span class="item-number">16</span>
+                            <i class="fas fa-bolt"></i>
+                            Convertisseurs d'energie
+                        </a>
+                        <a href="ressources/wifi.html" class="content-link">
+                            <span class="item-number">17</span>
+                            <i class="fas fa-wifi"></i>
+                            Wifi
+                        </a>
+                        <a href="ressources/accontrol.html" class="content-link">
+                            <span class="item-number">18</span>
+                            <i class="fas fa-plug"></i>
+                            Controle d'une charge AC
+                        </a>
+                        <a href="ressources/markov.html" class="content-link">
+                            <span class="item-number">19</span>
+                            <i class="fas fa-random"></i>
+                            Suite de Markov
+                        </a>
+                        <a href="ressources/can.html" class="content-link">
+                            <span class="item-number">20</span>
+                            <i class="fas fa-exchange-alt"></i>
+                            Fonctionnement du protocole CAN
+                        </a>
+                        <a href="ressources/ethernet.html" class="content-link">
+                            <span class="item-number">21</span>
+                            <i class="fas fa-ethernet"></i>
+                            Transmission data via Ethenet
+                        </a>
+                        <a href="ressources/filtrescomplemetaires.html" class="content-link">
+                            <span class="item-number">22</span>
+                            <i class="fas fa-filter"></i>
+                            Filtres Complemetaires
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section STM32 -->
+            <section id="stm32" class="section">
+                <h2><i class="fas fa-microchip"></i> Microcontrôleur STM32F4</h2>
+                <div class="section-content">
+                    <p>Ressources complètes pour maîtriser l'usage du microcontrôleur STM32F4 :</p>
+                    
+                    <div class="content-links">
+                        <a href="stm32/architecture_stm32f4.html" class="content-link">
+                            <span class="item-number">1</span>
+                            <i class="fas fa-archway"></i>
+                            Présentation du microcontrôleur STM32F4
+                        </a>
+                        <a href="stm32/gpio.html" class="content-link">
+                            <span class="item-number">2</span>
+                            <i class="fas fa-microchip"></i>
+                            Structure matérielle et registres de contrôle des GPIO
+                        </a>
+                        <a href="stm32/timer.html" class="content-link">
+                            <span class="item-number">3</span>
+                            <i class="fas fa-clock"></i>
+                            Timer - Gestion du temps
+                        </a>
+                        <a href="stm32/pwm.html" class="content-link">
+                            <span class="item-number">4</span>
+                            <i class="fas fa-wave-square"></i>
+                            PWM - Modulation de largeur d'impulsion
+                        </a>
+                        <a href="stm32/uart.html" class="content-link">
+                            <span class="item-number">5</span>
+                            <i class="fas fa-exchange-alt"></i>
+                            Communication avec des dispositifs via UART
+                        </a>
+                        <a href="stm32/i2c.html" class="content-link">
+                            <span class="item-number">6</span>
+                            <i class="fas fa-exchange-alt"></i>
+                            Communication avec I2C (Inter-Integrated Circuit)
+                        </a>
+                        <a href="stm32/spi.html" class="content-link">
+                            <span class="item-number">7</span>
+                            <i class="fas fa-exchange-alt"></i>
+                            Communication en SPI (Serial Peripheral Interface)
+                        </a>
+                        <a href="stm32/adc.html" class="content-link">
+                            <span class="item-number">8</span>
+                            <i class="fas fa-wave-square"></i>
+                            Acquisition analogique - ADC (Analog to Digital Converter)
+                        </a>
+                        <a href="stm32/dac.html" class="content-link">
+                            <span class="item-number">9</span>
+                            <i class="fas fa-wave-square"></i>
+                            Génération des signaux analogiques - DAC (Digital to Analog Converter)
+                        </a>
+                        <a href="stm32/dma.html" class="content-link">
+                            <span class="item-number">10</span>
+                            <i class="fas fa-exchange-alt"></i>
+                            DMA - Communication
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section Articles -->
+            <section id="articles" class="section">
+                <h2><i class="fas fa-file-alt"></i> Articles académiques</h2>
+                <div class="section-content">
+                    <p>Publications scientifiques pour approfondir les sujets abordés :</p>
+                    
+                    <div class="content-links">
+                        <a href="articles/kalman.html" class="content-link">
+                            <span class="item-number">1</span>
+                            <i class="fas fa-chart-line"></i>
+                            Filtre de Kalman pour systèmes embarqués
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section Contacts -->
+            <section id="contacts" class="section">
+                <h2><i class="fas fa-envelope"></i> Contacts</h2>
+                <div class="section-content">
+                    <p>Pour toute question concernant le cours :</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-label">Ir. Paul S. Kabidu</span>
+                            <span class="contact-value">Enseignant principal - spaulkabidu@gmail.com</span>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <a href="https://github.com/Plkab" class="content-link">
+                                <i class="fab fa-github"></i>
+                                Dépôt GitHub - Code source et ressources partagées
+                            </a>
+                        </div>
+
+                        <div class="contact-item">
+                            <a href="https://forms.example.com" class="content-link">
+                                <i class="fas fa-file-alt"></i>
+                                Formulaire de contact - Pour les demandes spécifiques
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
     </div>
 
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <script src="scripts/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation active
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Highlight active section on scroll
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('.section');
+                const navHeight = document.querySelector('nav').offsetHeight;
+                
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (window.pageYOffset >= (sectionTop - navHeight - 100)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
