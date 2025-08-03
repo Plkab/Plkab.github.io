@@ -291,3 +291,29 @@ nav {
         justify-content: center;
     }
 }
+
+.philosophie-link {
+    margin-top: 25px;
+    padding: 15px;
+    background-color: #f8f9ff;
+    border-left: 3px solid #0056b3;
+}
+
+.btn-philosophie {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.btn-philosophie:hover {
+    background-color: #004494;
+}
+
+.btn-philosophie i {
+    margin-right: 8px;
+}
