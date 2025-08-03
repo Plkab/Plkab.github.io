@@ -1,123 +1,293 @@
+/* Variables de couleurs */
+:root {
+    --primary: #1a2a6c;
+    --secondary: #b21f1f;
+    --accent: #fdbb2d;
+    --light: #f8f9fa;
+    --dark: #2c3e50;
+    --gray: #6c757d;
+    --success: #28a745;
+}
+
+/* Styles de base */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    line-height: 1.6;
+    background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
     color: #333;
-    background-color: #f8f8f8;
+    line-height: 1.6;
     padding: 20px;
-    max-width: 1000px;
+    min-height: 100vh;
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 1200px;
     margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.97);
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
 }
 
+/* En-tête */
 header {
+    background: linear-gradient(to right, var(--dark), #4a6491);
+    color: white;
     text-align: center;
-    padding: 20px 0;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ddd;
+    padding: 40px 20px;
+    position: relative;
 }
 
-h1 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    color: #0066cc;
+.course-title {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
 }
 
-.info {
-    margin: 15px 0;
-    color: #666;
+.subtitle {
+    font-size: 1.3rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+    opacity: 0.9;
 }
 
-nav {
-    margin: 20px 0;
-    padding: 15px 0;
-    text-align: center;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-nav a {
+.github-badge {
+    background: rgba(0, 0, 0, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    color: white;
     text-decoration: none;
-    color: #0066cc;
-    margin: 0 5px;
-    white-space: nowrap;
+    transition: all 0.3s ease;
 }
 
-section {
-    margin: 30px 0;
+.github-badge:hover {
+    background: rgba(0, 0, 0, 0.5);
+    transform: translateY(-3px);
+}
+
+.github-badge i {
+    color: var(--accent);
+}
+
+.teacher-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 18px 28px;
+    border-radius: 12px;
+    min-width: 240px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* Navigation */
+nav {
+    background: #fff;
     padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-h2 {
-    font-size: 1.5rem;
+.nav-links {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: var(--dark);
+    background: #f8f9fa;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid #e9ecef;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-links li a:hover, 
+.nav-links li a.active {
+    background: linear-gradient(to right, #3498db, var(--dark));
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-color: #3498db;
+}
+
+/* Sections de contenu */
+.section {
+    padding: 50px 40px;
+    border-bottom: 1px solid #eee;
+}
+
+.section:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.section:last-child {
+    border-bottom: none;
+}
+
+.section h2 {
+    color: var(--dark);
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid var(--accent);
+    display: inline-block;
+}
+
+.section-content {
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+
+.section-content p {
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+}
+
+.subsection {
+    margin-top: 25px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.subsection h3 {
+    color: var(--secondary);
     margin-bottom: 15px;
-    color: #0066cc;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-p {
-    margin-bottom: 15px;
-    line-height: 1.7;
-}
-
-ol {
+.subsection ul {
     padding-left: 25px;
-    margin: 15px 0;
+    margin-bottom: 20px;
 }
 
-li {
-    margin-bottom: 8px;
+.subsection li {
+    margin-bottom: 10px;
     position: relative;
     padding-left: 25px;
 }
 
-ol > li::before {
-    content: counter(item) ".";
-    counter-increment: item;
+.subsection li::before {
+    content: "•";
+    color: var(--accent);
+    font-size: 1.5rem;
     position: absolute;
     left: 0;
+    top: -5px;
+}
+
+.content-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.content-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 25px;
+    background: #e3f2fd;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #1976d2;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid #bbdefb;
+    width: 100%;
+}
+
+.content-link:hover {
+    background: #bbdefb;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Numérotation automatique */
+.item-number {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: var(--accent);
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    margin-right: 10px;
     font-weight: bold;
 }
 
-.contact-info {
-    margin: 20px 0;
-}
-
-.contact-item {
-    margin: 15px 0;
-}
-
-.contact-label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.contact-value {
-    margin-left: 10px;
-}
-
-@media (max-width: 600px) {
-    nav {
+/* Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .course-title {
+        font-size: 2rem;
+    }
+    
+    .teacher-info {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .nav-links {
         flex-direction: column;
         align-items: center;
     }
     
-    nav a {
-        display: block;
+    .nav-links li {
         width: 100%;
         text-align: center;
-        margin: 5px 0;
-        padding: 10px;
-        border: 1px solid #ddd;
+    }
+    
+    .nav-links li a {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .section {
+        padding: 40px 20px;
+    }
+    
+    .content-links {
+        flex-direction: column;
+    }
+    
+    .content-link {
+        justify-content: center;
     }
 }

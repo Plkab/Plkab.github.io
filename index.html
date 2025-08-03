@@ -3,67 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conception des Systèmes Embarqués à base du microcontrôleur STM32F4</title>
+    <title>Conception des Systèmes Embarqués STM32F4</title>
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-    <header>
-        <h1>Conception des Systèmes Embarqués à base du microcontrôleur STM32F4</h1>
-        <p>Modélisation, conception, développement et mise en œuvre de systèmes électroniques intelligents</p>
+    <div class="container">
+        <header>
+            <h1 class="course-title">Conception des Systèmes Embarqués à base du microcontrôleur STM32F4</h1>
+            <p class="subtitle">Modélisation, conception, développement et mise en œuvre de systèmes électroniques intelligents</p>
+            
+            <div class="teacher-info">
+                <div class="info-card">
+                    <div><strong>Enseignant:</strong> Ir. Paul S. Kabidu</div>
+                    <div><strong>Département:</strong> Génie Électrique et Informatique</div>
+                </div>
+                <a href="https://github.com/Plkab" class="github-badge">
+                    <i class="fab fa-github"></i>
+                    <span>Dépôt GitHub</span>
+                </a>
+            </div>
+        </header>
         
-        <div class="info">
-            <div><strong>Enseignant:</strong> Ir. Paul S. Kabidu</div>
-            <div><strong>Département:</strong> Génie Électrique et Informatique</div>
-        </div>
-    </header>
-    
-    <nav>
-        <a href="#approche">Notre approche et philosophie</a>
-        <a href="#projets">Projets d'ingénierie</a>
-        <a href="#ressources">Autres ressources théoriques</a>
-        <a href="#stm32">Microcontrôleur STM32F4</a>
-        <a href="#articles">Articles académiques</a>
-        <a href="#contacts">Contacts</a>
-    </nav>
-    
-    <!-- Sections incluses dynamiquement -->
-    <div id="sections-container">
-        <!-- Le contenu sera chargé ici par JavaScript -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#approche" class="active">Notre approche</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#ressources">Ressources</a></li>
+                <li><a href="#stm32">STM32F4</a></li>
+                <li><a href="#articles">Articles</a></li>
+                <li><a href="#contacts">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <!-- Sections chargées dynamiquement -->
+            <div id="sections-container"></div>
+        </main>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = [
-                'approche', 'projets', 'ressources', 'stm32', 'articles', 'contacts'
-            ];
-
-            const container = document.getElementById('sections-container');
-            
-            sections.forEach(section => {
-                fetch(`sections/${section}.html`)
-                    .then(response => response.text())
-                    .then(html => {
-                        container.innerHTML += html;
-                    });
-            });
-
-            // Gestion du défilement fluide
-            document.querySelectorAll('nav a').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if(targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 60,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>
