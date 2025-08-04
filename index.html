@@ -579,10 +579,11 @@
             <a href="#contacts">Contact</a>
         </div>
         
-        <p class="copyright">© 2025 Conception des Systèmes Numériques STM32F4 - Tous droits réservés</p>
-        <p style="margin-top: 10px; font-size: 0.9rem;">
-            Nombre de visites : <span id="compteur-visite">...</span>
+        <p class="copyright">
+            © 2025 Conception des Systèmes Numériques STM32F4 - Tous droits réservés<br>
+            Nombre de visites : <span id="compteur-visite">chargement...</span>
         </p>
+
     </footer>
 
     <script>
@@ -636,15 +637,15 @@
         });
     </script>
     <script>
-        // Utilise CountAPI pour compter les visites
-        fetch('https://api.countapi.xyz/hit/stm32f4/visites')
-            .then(res => res.json())
+        // Utilisation de CountAPI pour compter les visites
+        fetch('https://api.countapi.xyz/hit/ista-goma/stm32f4-visites')
+            .then(response => response.json())
             .then(data => {
                 document.getElementById('compteur-visite').textContent = data.value;
             })
-            .catch(err => {
+            .catch(error => {
+                console.error('Erreur de compteur :', error);
                 document.getElementById('compteur-visite').textContent = 'non disponible';
-                console.error('Erreur compteur :', err);
             });
     </script>
 
