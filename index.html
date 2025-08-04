@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conception des Systèmes Numériques à base du microcontrôleur STM32F4</title>
+    <title>Conception des Systèmes Numériques - STM32F4 | ISTA Goma</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -44,6 +45,10 @@
             text-align: center;
             border-top: 1px solid #ddd;
             border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 100;
         }
         
         nav a {
@@ -52,6 +57,13 @@
             text-decoration: none;
             color: #0056b3;
             margin: 0 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover, nav a.active {
+            background: #0056b3;
+            color: white;
+            border-radius: 4px;
         }
         
         section {
@@ -65,6 +77,9 @@
             color: #0056b3;
             padding-bottom: 8px;
             border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         p {
@@ -101,10 +116,12 @@
             color: #0056b3;
             text-decoration: none;
             display: block;
+            transition: all 0.2s ease;
         }
         
         .item a:hover {
             text-decoration: underline;
+            color: #003d82;
         }
         
         .contact-info {
@@ -124,6 +141,45 @@
             margin-left: 5px;
         }
         
+        footer {
+            background: #0056b3;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 40px;
+            border-radius: 8px;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #fdbb2d;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #bbdefb;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+        }
+        
         @media (max-width: 600px) {
             nav {
                 display: flex;
@@ -135,6 +191,11 @@
                 text-align: center;
                 margin: 5px 0;
                 padding: 10px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 10px;
             }
         }
     </style>
@@ -151,22 +212,31 @@
     </header>
     
     <nav>
-        <a href="#approche">Notre approche</a>
-        <a href="#projets">Projets</a>
-        <a href="#ressources">Ressources</a>
-        <a href="#stm32">STM32F4</a>
-        <a href="#articles">Articles</a>
-        <a href="#contacts">Contact</a>
+        <a href="#approche"><i class="fas fa-lightbulb"></i> Notre approche</a>
+        <a href="#projets"><i class="fas fa-project-diagram"></i> Projets</a>
+        <a href="#ressources"><i class="fas fa-book"></i> Ressources</a>
+        <a href="#stm32"><i class="fas fa-microchip"></i> STM32F4</a>
+        <a href="#articles"><i class="fas fa-file-alt"></i> Articles</a>
+        <a href="#contacts"><i class="fas fa-envelope"></i> Contact</a>
     </nav>
     
     <section id="approche">
-        <h2>Notre approche et philosophie</h2>
+        <h2><i class="fas fa-lightbulb"></i> Notre approche et philosophie</h2>
         <p>Ce cours explore les principes fondamentaux des systèmes embarqués, en mettant l'accent sur la conception matérielle et logicielle des dispositifs électroniques intelligents.</p>
         <p>Notre philosophie pédagogique repose sur l'apprentissage par la pratique à travers des projets concrets qui permettent d'appliquer immédiatement les concepts théoriques.</p>
+        
+        <div style="margin-top: 25px; padding: 15px; background-color: #e6f2ff; border-left: 3px solid #0056b3;">
+            <div style="font-weight: bold; margin-bottom: 5px;">Découvrez notre philosophie complète</div>
+            <div>
+                <a href="philosophie/" style="color: #0056b3; text-decoration: none;">
+                    <i class="fas fa-arrow-right"></i> Lire la philosophie pédagogique détaillée
+                </a>
+            </div>
+        </div>
     </section>
     
     <section id="projets">
-        <h2>Projets d'ingénierie</h2>
+        <h2><i class="fas fa-project-diagram"></i> Projets d'ingénierie</h2>
         <p>Les projets constituent le cœur de ce cours. Voici nos principaux projets :</p>
         
         <div class="item-list">
@@ -282,7 +352,7 @@
     </section>
     
     <section id="ressources">
-        <h2>Autres ressources théoriques</h2>
+        <h2><i class="fas fa-book"></i> Autres ressources théoriques</h2>
         <p>Diverses ressources pédagogiques pour approfondir vos connaissances :</p>
         
         <div class="item-list">
@@ -378,7 +448,7 @@
     </section>
     
     <section id="stm32">
-        <h2>Microcontrôleur STM32F4</h2>
+        <h2><i class="fas fa-microchip"></i> Microcontrôleur STM32F4</h2>
         <p>Ressources complètes pour maîtriser l'usage du microcontrôleur STM32F4 :</p>
         
         <div class="item-list">
@@ -426,7 +496,7 @@
     </section>
     
     <section id="articles">
-        <h2>Articles académiques</h2>
+        <h2><i class="fas fa-file-alt"></i> Articles académiques</h2>
         <p>Publications scientifiques pour approfondir les sujets abordés :</p>
         
         <div class="item-list">
@@ -438,7 +508,7 @@
     </section>
     
     <section id="contacts">
-        <h2>Contacts</h2>
+        <h2><i class="fas fa-envelope"></i> Contacts</h2>
         <p>Pour toute question concernant le cours :</p>
         
         <div class="contact-info">
@@ -459,41 +529,69 @@
         </div>
     </section>
     
-    <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                 <i class="fas fa-microchip"></i>
-            </div>
-            <h3>Institut Supérieur des Techniques Appliquées de Goma</h3>
-            <p>Département de Génie Électrique et Informatique</p>
-                
-            <div class="footer-links">
-                <a href="#approche">Notre approche</a>                    <a href="#projets">Projets</a>
-                <a href="#ressources">Ressources</a>
-                <a href="https://plkab.github.io/">GitHub</a>
-                <a href="#contacts">Contact</a>
-            </div>
-                
-            <p class="copyright">© 2025 Conception des Systèmes Numériques STM32F4 - Tous droits réservés</p>
+        <div class="footer-logo">
+            <i class="fas fa-microchip"></i>
         </div>
+        <h3>Institut Supérieur des Techniques Appliquées de Goma</h3>
+        <p>Département de Génie Électrique et Informatique</p>
+        
+        <div class="footer-links">
+            <a href="#approche">Notre approche</a>
+            <a href="#projets">Projets</a>
+            <a href="#ressources">Ressources</a>
+            <a href="https://plkab.github.io/">GitHub</a>
+            <a href="#contacts">Contact</a>
+        </div>
+        
+        <p class="copyright">© 2025 Conception des Systèmes Numériques STM32F4 - Tous droits réservés</p>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Navigation simple
-            document.querySelectorAll('nav a').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
+            // Navigation sticky et mise en évidence
+            const navLinks = document.querySelectorAll('nav a');
+            const sections = document.querySelectorAll('section');
+            
+            // Navigation fluide
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
                     e.preventDefault();
                     
                     const targetId = this.getAttribute('href');
                     const targetElement = document.querySelector(targetId);
                     
                     if(targetElement) {
+                        // Mise à jour du lien actif
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        // Défilement fluide
                         window.scrollTo({
                             top: targetElement.offsetTop - 60,
                             behavior: 'smooth'
                         });
+                    }
+                });
+            });
+            
+            // Mise en évidence de la section active
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (window.pageYOffset >= (sectionTop - 100)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
                     }
                 });
             });
