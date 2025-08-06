@@ -14,7 +14,6 @@
     
     <main>
         <section>
-            <p><strong>Caractéristiques principales :</strong></p>
             <p>Les microcontrôleurs de la famille <strong>STM32F4</strong> 
                 de STMicroelectronics incarnent une gamme de composants embarqués 
                 hautes performances, conçus pour les applications qui exigent à la 
@@ -37,24 +36,6 @@
                 Cette unité centrale de traitement intègre une <strong>FPU (Floating Point Unit)</strong> 
                 capable d'effectuer des opérations en virgule flottante simple précision conformes à la norme IEEE 754, 
                 ce qui est essentiel pour les applications de contrôle, de filtrage et de calcul scientifique.</p>
-            <table>
-                <tr>
-                    <td><strong>Cœur de processeur :</strong></td>
-                    <td>ARM Cortex-M4 32-bit RISC</td>
-                </tr>
-                <tr>
-                    <td><strong>Fréquence max :</strong></td>
-                    <td>180 MHz</td>
-                </tr>
-                <tr>
-                    <td><strong>FPU :</strong></td>
-                    <td>Virgule flottante simple précision (IEEE 754)</td>
-                </tr>
-                <tr>
-                    <td><strong>Instructions DSP :</strong></td>
-                    <td>MAC, SIMD</td>
-                </tr>
-            </table>
             
             <p>Le processeur implémente aussi des instructions DSP telles que MAC (Multiply and Accumulate) 
                 et SIMD (Single Instruction Multiple Data), permettant une exécution rapide des opérations 
@@ -80,14 +61,7 @@
             <p>Cette organisation permet une exécution fluide des opérations critiques, 
                 ainsi qu'une gestion efficace du multitâche.
             </p>
-
-            <p><strong>Mémoire interne :</strong></p>
-            <ul>
-                <li><strong>Flash interne</strong> : Jusqu'à 1 Mo pour stocker le programme</li>
-                <li><strong>SRAM interne</strong> : 128 Ko ou plus, avec organisation optimisée</li>
-            </ul>
             
-            <p><strong>Contrôleurs externes :</strong></p>
             <p>Pour les systèmes nécessitant de la mémoire externe, les microcontrôleurs proposent un 
                 <strong>contrôleur FMC (Flexible Memory Controller)</strong> compatible avec des mémoires NOR, 
                 NAND, SRAM, et SDRAM. Le <strong>QUADSPI</strong> permet une connexion haut débit avec des mémoires 
@@ -102,27 +76,7 @@
                 LSE à 32,768 kHz) pouvant être multipliées par un système de PLL (jusqu'à 180 MHz). 
                 Chaque bus interne (AHB, APB1, APB2) peut être cadencé différemment grâce à des prédiviseurs.
             </p>
-
-            <table>
-                <tr>
-                    <td><strong>Sources d'horloge :</strong></td>
-                    <td>Internes (HSI, LSI) et externes (HSE, LSE)</td>
-                </tr>
-                <tr>
-                    <td><strong>PLL :</strong></td>
-                    <td>Jusqu'à 180 MHz</td>
-                </tr>
-                <tr>
-                    <td><strong>Tension d'alimentation :</strong></td>
-                    <td>1.7 V - 3.6 V</td>
-                </tr>
-                <tr>
-                    <td><strong>Régulateurs :</strong></td>
-                    <td>LDO, SMPS</td>
-                </tr>
-            </table>
             
-            <p><strong>Modes basse consommation :</strong></p>
             <p>Côté alimentation, les STM32F4 fonctionnent typiquement entre 1,7 V et 3,6 V et 
                 intègrent plusieurs régulateurs internes (LDO, SMPS) pour optimiser la consommation. 
                 Ils offrent plusieurs <strong>modes basse consommation</strong> : Sleep, Stop, Standby, 
@@ -135,7 +89,7 @@
             <h2>Périphériques analogiques et numériques</h2>
             <p>Le STM32F4 intègre une large gamme de périphériques pour diverses applications.</p>
             
-            <p><strong>Convertisseurs :</strong></p>
+            <h3>Convertisseurs</h3>
             <p>Les STM32F4 disposent de <strong>convertisseurs analogique-numérique (ADC)</strong> 12 bits 
                 à haut débit (jusqu'à 2,4 MSPS), regroupés jusqu'à trois ADC pouvant fonctionner en mode interlaced 
                 pour atteindre 7,2 MSPS. Les <strong>DACs 12 bits</strong>, quand présents, permettent la génération 
@@ -143,7 +97,7 @@
                 intégrés permettent d'implémenter des circuits de détection de seuil sans composants externes.
             </p>
             
-            <p><strong>Timers :</strong></p>
+            <h3>Timers</h3>
             <ul>
                 <li><strong>Timers avancés (TIM1, TIM8)</strong> : Pour contrôle moteur (PWM, dead-time)</li>
                 <li><strong>Timers généraux (TIM2-TIM5, TIM9-14)</strong> : Comptage, capture, comparaison</li>
@@ -153,7 +107,7 @@
         </section>
         
         <section>
-            <h2>Interfaces de communication</h2>
+            <h3>Interfaces de communication</h3>
             <p>Richesse exceptionnelle en interfaces pour une connectivité étendue.</p>
             
             <ul>
@@ -169,34 +123,20 @@
         </section>
         
         <section>
-            <h2>Système d'interruption et DMA</h2>
+            <h3>Système d'interruption et DMA</h3>
              <p>La gestion des interruptions repose sur le <strong>NVIC</strong> (Nested Vectored Interrupt Controller) 
                 pouvant prioriser jusqu'à 82 lignes d'interruption. Pour décharger le CPU, deux contrôleurs <strong>DMA</strong> 
                 avec 8 canaux chacun permettent des transferts mémoire-à-mémoire, périphérique-à-mémoire, ou mémoire-à-périphérique, 
                 avec gestion FIFO, mode circulaire ou double tampon.
             </p>
-            
-            <ul>
-                <li><strong>NVIC</strong> : Contrôleur d'interruptions pouvant prioriser jusqu'à 82 lignes</li>
-                <li><strong>DMA</strong> : Deux contrôleurs avec 8 canaux chacun pour décharger le CPU</li>
-                <li><strong>Transferts</strong> : Mémoire-à-mémoire, périphérique-à-mémoire, mémoire-à-périphérique</li>
-                <li><strong>Modes</strong> : FIFO, circulaire, double tampon</li>
-            </ul>
         </section>
         
         <section>
-            <h2>Interfaces de développement et sécurité </h2>
+            <h3>Interfaces de développement et sécurité </h3>
             <p>Les STM32F4 intègrent des outils puissants pour le débogage : interfaces <strong>SWD, 
                 JTAG</strong>, traceurs <strong>ITM, DWT, ETM</strong>, facilitant le profilage temps réel. 
                 La <strong>unité CRC</strong> permet de vérifier l'intégrité des données ou du code.
             </p>
-
-            <p><strong>Débogage :</strong></p>
-            <ul>
-                <li><strong>SWD, JTAG</strong> : Interfaces standard</li>
-                <li><strong>Traceurs</strong> : ITM, DWT, ETM pour profilage temps réel</li>
-                <li><strong>Unité CRC</strong> : Vérification de l'intégrité des données</li>
-            </ul>
             
             <p><strong>Sécurité :</strong></p>
             <ul>
@@ -214,14 +154,6 @@
             </p>
             <p>Cette carte intègre directement un programmateur/débogueur ST-LINK/V2-1, accessible via USB, évitant l'usage de sonde externe.
             </p>
-
-            <p><strong>Caractéristiques principales :</strong></p>
-            <ul>
-                <li><strong>Compatibilité</strong> : Shields ARDUINO Uno V3 + connecteurs ST morpho</li>
-                <li><strong>Programmateur intégré</strong> : ST-LINK/V2-1 accessible via USB</li>
-                <li><strong>Alimentation flexible</strong> : USB, tension externe ou 3.3V direct</li>
-                <li><strong>Régulateur</strong> : LD1117 pour stabilité de tension</li>
-            </ul>
             
             <p><strong>Connectivité :</strong></p>
             <ul>
@@ -239,27 +171,7 @@
             </ul>
         </section>
         
-        <aside>
-            <h2>Caractéristiques clés</h2>
-            <ul>
-                <li><strong>Cœur ARM Cortex-M4 avec FPU</strong> : Performances élevées pour calculs complexes</li>
-                <li><strong>Jusqu'à 180 MHz</strong> : Rapidité d'exécution exceptionnelle</li>
-                <li><strong>Jusqu'à 1 Mo Flash</strong> : Capacité mémoire importante pour applications complexes</li>
-                <li><strong>Jusqu'à 17 timers</strong> : Flexibilité pour le contrôle temps réel</li>
-                <li><strong>Interfaces multiples</strong> : Connectivité étendue pour diverses applications</li>
-                <li><strong>Faible consommation</strong> : Optimisé pour applications sur batterie</li>
-            </ul>
-            
-            <h2>Applications typiques</h2>
-            <ul>
-                <li><strong>Automatisation industrielle</strong> : Contrôle de machines, robots</li>
-                <li><strong>Systèmes automobiles</strong> : Unités de contrôle électronique</li>
-                <li><strong>Dispositifs médicaux</strong> : Équipements portables de monitoring</li>
-                <li><strong>Domotique</strong> : Systèmes de gestion de maison intelligente</li>
-                <li><strong>IoT</strong> : Dispositifs connectés, capteurs intelligents</li>
-                <li><strong>Dispositifs grand public</strong> : Électronique portable, gadgets</li>
-            </ul>
-            
+        <aside>            
             <h2>Outils de développement</h2>
             <ul>
                 <li><strong>STM32CubeIDE</strong> : Environnement de développement intégré</li>
@@ -278,29 +190,25 @@
             
             <ul>
                 <li>
-                    <strong>PM0214 - Programming Manual</strong> Guide complet de programmation pour les MCUs et MPUs STM32 Cortex®-M4
+                    <strong>PM0214 - Programming Manual</strong> : Guide complet de programmation pour les MCUs et MPUs STM32 Cortex®-M4
                     <a href="https://www.st.com/resource/en/programming_manual/pm0214-stm32-cortexm4-mcus-and-mpus-programming-manual-stmicroelectronics.pdf" target="_blank">Télécharger</a>
                 </li>
                 <li>
-                    <strong>RM0390 - Reference Manual</strong>
-                    Document de référence pour les microcontrôleurs STM32F446xx 32-bit
+                    <strong>RM0390 - Reference Manual</strong> : Document de référence pour les microcontrôleurs STM32F446xx 32-bit
                     <a href="https://www.st.com/resource/en/reference_manual/rm0390-stm32f446xx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf" target="_blank">Télécharger</a>
                 </li>
                 <li>
-                    <strong>STM32F446xC/E - Datasheet</strong>
-                    Spécifications techniques détaillées : 512KB Flash, 128+4KB RAM, USB OTG, 17 timers
+                    <strong>STM32F446xC/E - Datasheet</strong> : Spécifications techniques détaillées : 512KB Flash, 128+4KB RAM, USB OTG, 17 timers
                     <a href="https://www.st.com/resource/en/datasheet/stm32f446re.pdf" target="_blank">Télécharger</a>
                 </li>
                 <li>
-                    <strong>MB1136 - Nucleo-64 Schematics</strong>
-                    Schémas électriques complets de la carte Nucleo F446
+                    <strong>MB1136 - Nucleo-64 Schematics</strong> : Schémas électriques complets de la carte Nucleo F446
                     <a href="https://www.st.com/resource/en/schematic_pack/mb1136-stm32f446rct6-nucleo64-schematics.pdf" target="_blank">Télécharger</a>
                 </li>
             </ul>
     </section>
     <footer>
-        <p>Contenu pédagogique sur le microcontrôleur STM32F4 - Cours d'électronique embarquée</p>
-        <p>© 2025 - Tous droits réservés</p>
+        <p>© Aout 2025 - Tous droits réservés ISTA-Goma</p>
     </footer>
 </body>
 </html>
