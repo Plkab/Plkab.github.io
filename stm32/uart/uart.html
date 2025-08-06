@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STM32F4 - UART</title>
+    <link rel="stylesheet" href="/path/to/your/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+    <header>
+        <h1 align="center"><font size="+2">Communication avec des dispositifs via USART </font></h1>
+    </header>
+    
+    <main>
+        <h4 align="center">Paul S. Kabidu (spaulkab@gmail.com)</h4>
+
+        <section>
+            <p>Dans tout système embarqué, la capacité à communiquer avec d'autres dispositifs est cruciale. Qu’il s’agisse de transmettre 
+                des données vers un ordinateur, de recevoir des informations d’un capteur, ou encore d’échanger avec un autre microcontrôleur, 
+                les communications série s’imposent comme une solution simple et efficace. Parmi ces protocoles, 
+                l’USART — acronyme de Universal Synchronous/Asynchronous Receiver Transmitter — est l’un des plus couramment utilisés. 
+                Il permet des échanges bidirectionnels entre deux dispositifs à l’aide de seulement deux lignes : l’une pour la transmission (TX) 
+                et l’autre pour la réception (RX). L’USART peut fonctionner en mode synchrone, avec une horloge partagée, ou en mode asynchrone, 
+                sans horloge, ce dernier étant le plus fréquent dans les applications pratiques. C’est sous ce mode que nous nous concentrerons ici.
+                Sur le STM32F446, plusieurs instances d'USART sont disponibles, pouvant fonctionner en mode UART (asynchrone). 
+                La carte NUCLEO-F446RE exploite notamment l'USART2 connecté au ST-LINK pour une communication série vers un PC via USB.
+            </p>
+        </section>
+        
+        <section>
+            <h2>Caractéristiques Techniques</h2>
+            <ul>
+                <li><strong>Modes supportés</strong> : Asynchrone (UART), synchrone, LIN, SmartCard, IrDA.</li>
+                <li><strong>Débit en bauds</strong> : Jusqu'à 12.5 Mbit/s (dépend de la fréquence)</li>
+                <li><strong>Format de trame</strong> 
+                    <li>8 ou 9 bits de données.</li>
+                    <li>Bit de parité optionnel (pair/impair).</li>
+                    <li>1 ou 2 bits de stop.</li>
+                </li>
+                <li><strong>Contrôle de flux</strong> : Signaux RTS (Request to Send) et CTS (Clear to Send) matériels.</li>
+                <li>
+                    <li>Détection de surcharge (overrun), d'erreur de parité, de bruit.</li>
+                    <li>Générateur de bauds 16x ou 8x suréchantillonné pour une précision accrue.</li>
+                    <li>Support des interruptions et DMA.</li>
+                </li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2>Registres Clés</h2>
+            <p>Chaque USART est contrôlé via des registres :</p>
+               
+            <ul>
+                <li><strong>USART_SR (Status Register)</strong> : Indique l'état (TXE, RXNE, TC, erreurs).</li>
+                <li><strong>USART_DR (Data Register)</strong> : Stocke les données à émettre/reçues.</li>
+                <li><strong>USART_BRR (Baud Rate Register)</strong>  : Définit le débit (calcul basé sur l'horloge).</li>
+                <li><strong>USART_CR1 (Control Register 1) </strong>  : Active l'USART, configure les interruptions, la longueur des données.</li>
+                <li><strong>USART_CR2 (Control Register 2)</strong> : Contrôle les bits de stop, l'horloge en mode synchrone.</li>
+                <li><strong>USART_CR3 (Control Register 3)</strong>  Gère DMA, contrôle de flux (RTS/CTS).</li>
+            </ul>
+        </section>
+        
+    </main>
+    
+    <hr>
+    <hr>
+    <footer>
+        <p>© Aout 2025 - Tous droits réservés ISTA-Goma</p>
+    </footer>
+</body>
+</html>
